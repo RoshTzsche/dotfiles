@@ -1,0 +1,101 @@
+@import '/home/ateniense/.cache/wal/colors-waybar.css';
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", Roboto, Helvetica, Arial, sans-serif;
+    font-size: 14px; 
+    min-height: 0;
+    padding: 0.5 2px;
+}
+
+window#waybar {
+    background-color: rgba(0, 0, 0, 0.3); 
+    color: @foreground;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+/* Estilo para los espacios de trabajo */
+#workspaces button {
+    padding: 0 8px;
+    background-color: transparent;
+    color: @foreground;
+}
+
+#workspaces button.active {
+    background-color: @color1;
+    color: @background;
+    border-radius: 3px;
+}
+
+/* Módulos individuales */
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#custom-nvidia,	
+#backlight,
+#network,
+#pulseaudio,
+#tray,
+#custom-syncthing,
+#mode,
+#idle_inhibitor,
+#custom-launcher,
+#custom-reading-mode,
+#mpd {
+    padding: 0 6px;
+    margin: 0.5 2px;
+    color: @foreground;
+    background-color: @color1; 
+    border-radius: 2px;
+}
+
+#battery.charging, #battery.plugged {
+    color: @color2;
+    background-color: @color4; /* Resaltar al cargar */
+}
+
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+#custom-pomodoro {
+    color: @foreground;
+    padding: 0 10px;
+}
+
+#custom-pomodoro.work {
+    background-color: @color1; /* Color pywal */
+    color: @background;
+}
+
+#custom-pomodoro.paused {
+	background-color: @background;
+	color: @color3;
+    /* Alerta visual */
+}
+#custom-launcher {
+    font-size: 16px;
+    padding-right: 12px;
+}
+
+/* Modo lectura */
+#custom-reading_mode {
+    color: @color3;
+}

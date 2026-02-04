@@ -1,0 +1,135 @@
+{
+    "layer": "top", 
+    "position": "top",
+    "height": 15, // Altura ajustada para 2560x1600 con escalado 1.6
+    "spacing": 4, // Espacio entre módulos
+    
+    "modules-left": [
+	    "custom/launcher",
+	    "hyprland/workspaces",
+	    "custom/reading-mode"
+          //"custom/pomodoro"
+                ],
+    
+    // Módulos al Centro (Tiempo)
+    "modules-center": ["clock",
+    ],
+    
+    // Módulos a la Derecha (Hardware)
+    "modules-right": ["pulseaudio", "custom/nvidia", "cpu", "memory","temperature", "battery", "custom/syncthing", "tray"],
+
+    // --- CONFIGURACIÓN DETALLADA DE MÓDULOS ---
+
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{icon}",
+	"on-click": "activate",
+	"format-icons": {
+	    "1": "一",  // Ichi
+            "2": "二",  // Ni
+            "3": "三",  // San
+            "4": "四",  // Shi
+            "5": "五",  // Go
+            "6": "六",  // Roku
+            "7": "七",  // Shichi
+            "8": "八",  // Hachi
+            "9": "九",  // Kyu
+            "10": "十", // Ju
+            "urgent": "",    // Alerta (Exclamación en círculo)
+            "default": ""    // Vacío (Círculo hueco)
+	}
+
+    },
+    
+    "clock": {
+        "format": "{:%H:%M}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+"on-click": "kitty --class calendar --title 'Calendario' -e sh -c 'cal -y; echo; echo [Pulsa Enter para cerrar]; read'"
+    },
+    
+    "cpu": {
+        "format": "  {usage}%" ,
+        "tooltip": false,
+        "interval": 10 // Actualizar cada 2s para no saturar la CPU
+    },
+    
+    "memory": {
+        "format": "  {}%" 
+    },
+    
+    "backlight": {
+        "format": "{icon} {percent}%",
+        "format-icons": ["", "", "", "", "", "", "", "", ""]
+    },
+    
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-icons": ["", "", "", "", ""]
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "{volume}% {icon} {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
+        "format-source": "{volume}% ",
+        "format-source-muted": "",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "on-click": "pavucontrol" 
+    },
+
+    "custom/pomodoro": {
+        "exec": "/home/ateniense/.config/waybar/scripts/pomodoro_start.sh",
+        "return-type": "json",
+        "on-click": "pkill -SIGUSR1 -f pomodoro.py",
+        "on-click-right": 
+	"/home/ateniense/.config/waybar/scripts/pomodoro_ui.sh",
+	//"pkill -SIGUSR2 -f pomodoro.py",
+
+        "format": "{}",
+        "tooltip": true
+    },
+
+    "custom/nvidia": {
+        "exec": "~/.config/waybar/scripts/nvidia_monitor.sh",
+        "return-type": "json",
+        "format": "{}", // El {} se reemplaza por el "text" del JSON
+        "interval": 3, // Revisar cada 3 segundos
+        "on-click": "prime-run kitty --hold -e nvidia-smi" // Click para ver detalles en terminal
+    },
+
+    "custom/syncthing": {
+        "exec": "systemctl --user is-active syncthing >/dev/null && echo ' ' || echo ' '",
+        "interval": 10,
+        "tooltip": true,
+        "tooltip-format": "Syncthing: Online",
+        "on-click": "xdg-open http://127.0.0.1:8384"
+    },
+    "custom/launcher": {
+        "format": "",
+        "on-click": "pkill rofi || ~/.config/rofi/launcher.sh",
+        "tooltip": false
+    },
+
+    "custom/reading-mode": {
+        "format": " ",
+        "on-click": "~/Scripts/toggle_reading_mode.sh",
+        "tooltip": true,
+        "tooltip-format": "Toggle E-Ink Shader"
+    }
+}
