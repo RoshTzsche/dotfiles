@@ -1,0 +1,11 @@
+.DS_Store
+*.swp
+*.log
+.git
+
+# Excluir carpeta .git interna de submodulos si usas gestores de plugins raros
+# Pero para lazy.nvim usualmente está bien trackear el lockfile si quieres mismas versiones
+
+# Si usas netrwhist o historiales de shell, ignóralos
+.zsh_history
+.bash_history
