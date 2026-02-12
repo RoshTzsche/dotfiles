@@ -8,8 +8,8 @@ I'm currently working on this...
 
 ## 📜 My Philosophy
 A configuration focused on pure performance and adaptive aesthetics, with custom scripts. 
-CPU: **Ryzen 6800H** 
-GPU: **RTX 3070**
+* CPU: **Ryzen 6800H** 
+* GPU: **RTX 3070**
 * **Base System:** CachyOS (Optimized Arch Linux)
 * **WM:** Hyprland (Dwindle Layout)
 * **Colors:** Pywal (Dynamic generation based on wallpaper)
