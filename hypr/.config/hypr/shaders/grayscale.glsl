@@ -117,8 +117,8 @@ void main() {
     gray = clamp(gray, 0.0, 1.0);
     
     // E-ink colors with slight warmth variation
-    vec3 paperColor = vec3(0.94, 0.92, 0.86);
-    vec3 inkColor   = vec3(0.10, 0.10, 0.12);
+    vec3 paperColor = vec3(0.95, 0.89, 0.75);
+    vec3 inkColor   = vec3(0.15, 0.12, 0.10);
     
     // More noticeable color variation for paper texture
     float colorVariation = hash(screenPos * 0.08) * 0.02; // Increased from 0.01

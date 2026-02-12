@@ -1,15 +1,28 @@
 return {
   "epwalsh/obsidian.nvim",
-  version = "*",  -- Recomendado para estabilidad, usa la última release semver
+  version = "*",
   lazy = true,
-  ft = "markdown", -- Solo carga este plugin cuando abras un archivo Markdown
+  ft = "markdown",
   
   dependencies = {
-    "nvim-lua/plenary.nvim", -- Biblioteca de utilidades estándar de Lua
-    -- Asegúrate de tener nvim-cmp si quieres autocompletado de enlaces [[...]]
-    -- "hrsh7th/nvim-cmp", 
+    "nvim-lua/plenary.nvim",
+    "hrsh7th/nvim-cmp",
+    "nvim-telescope/telescope.nvim", -- <--- PIEZA FALTANTE CRÍTICA
   },
+
+  -- Atajos para cargar el plugin sin abrir un archivo primero
+  keys = {
+    { "<leader>on", "<cmd>ObsidianNew<cr>", desc = "Nueva Nota Obsidian" },
+    { "<leader>ot", "<cmd>ObsidianTemplate<cr>", desc = "Insertar Plantilla" },
+    { "<leader>os", "<cmd>ObsidianSearch<cr>", desc = "Buscar en Vault" },
+  },
+
   opts = {
+	  picker = {
+    name = "telescope.nvim",
+    -- Opcional: Personaliza el aspecto si quieres que sea diferente al default
+    -- note_mappings = { ... } 
+  },
     workspaces = {
       {
         name = "personal",
@@ -17,31 +30,36 @@ return {
       },
     },
 
-    -- Configuración de Notas Diarias
     daily_notes = {
       folder = "diario",
       date_format = "%Y-%m-%d",
-      template = nil, -- Puedes crear templates más adelante
+      template = nil, 
     },
 
-    -- Completado de enlaces [[ ]]
+    -- CONFIGURACIÓN DE PLANTILLAS (Simple y Directa)
+    templates = {
+      subdir = "templates", -- Ruta física: ~/notes/templates
+      date_format = "%Y-%m-%d",
+      time_format = "%H:%M",
+      substitutions = {
+        -- Solo mantenemos lo esencial para tu bitácora
+        fresco = "Estado: 🟢 Fresco.",
+      },
+    },
+
+    -- Corrección Estructural: Todo esto ahora vive DENTRO de opts
     completion = {
       nvim_cmp = true,
       min_chars = 2,
     },
-    -- Frontmatter automático (Metadatos YAML al inicio del archivo)
+
     disable_frontmatter = true,
+
     note_id_func = function(title)
-      -- Si hay un título, úsalo como nombre de archivo
       if title ~= nil then
-        -- Opción A: Mantener mayúsculas y espacios (Windows style)
-        -- return title
-        
-        -- Opción B: Convertir a formato Linux (kebab-case) <- RECOMENDADO
-        -- "Hola Mundo" se convierte en "hola-mundo"
+        -- Kebab-case para nombres de archivo limpios en Linux
         return title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
       else
-        -- Si no das título, usa 4 letras al azar para no romper nada
         local suffix = ""
         for _ = 1, 4 do
           suffix = suffix .. string.char(math.random(65, 90))
@@ -49,28 +67,20 @@ return {
         return suffix
       end
     end,
-    -- Mapeos de teclas específicos para el buffer de Obsidian
+
     mappings = {
-      -- "gf" (Go to File) es nativo de Vim, pero aquí se sobrecarga 
-      -- para entender enlaces de Obsidian y crear notas si no existen.
       ["gf"] = {
-        action = function()
-          return require("obsidian").util.gf_passthrough()
-        end,
+        action = function() return require("obsidian").util.gf_passthrough() end,
         opts = { noremap = false, expr = true, buffer = true },
       },
-      -- Checkbox toggle con <leader>ch
       ["<leader>ch"] = {
-        action = function()
-          return require("obsidian").util.toggle_checkbox()
-        end,
+        action = function() return require("obsidian").util.toggle_checkbox() end,
         opts = { buffer = true },
       },
     },
-    
-    -- UI: Personalización visual ligera
+
     ui = {
-      enable = true,  -- Habilita decoraciones (checkboxes, bullets)
+      enable = true, 
     },
-  },
+  }, 
 }
