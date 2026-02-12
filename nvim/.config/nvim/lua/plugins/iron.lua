@@ -1,6 +1,5 @@
 return {
   "Vigemus/iron.nvim",
-  -- Evento: Cárgalo cuando entres a un buffer, o usa "VeryLazy" si prefieres velocidad de arranque pura.
   event = "VeryLazy", 
   
   config = function()
@@ -9,8 +8,7 @@ return {
     local common = require("iron.fts.common")
     iron.setup({
       config = {
-        -- REPL Definitions: Aquí defines qué binario ejecuta cada lenguaje.
-        -- Python es vital para tus scripts de Pywal.
+        -- REPL Definitions: Define which binary executes each language.
         repl_definition = {
           python = {
             command = { "python3" },
@@ -19,44 +17,44 @@ return {
 	    env = {PYTHON_BASIC_REPL = "1"}
           },
           sh = {
-            command = {"zsh"} -- O bash, según tu shell en CachyOS
+            command = {"zsh"} -- Or bash, depending on your shell
           }
         },
-        -- Cómo se abre la ventana del REPL
-        -- Usamos split vertical al 40% del ancho por tu pantalla 16:10
-        repl_open_cmd = view.split.vertical.botright("40%"),
+        -- How the REPL window opens
+        -- Vertical split 
+        repl_open_cmd = view.split.vertical.botright("30%"),
       },
       
-      -- Configuración de brillo/resaltado al enviar código
+      -- Highlight configuration when sending code
       highlight = {
         italic = true
       },
       
-      -- Ignorar ventanas flotantes para evitar conflictos con lazy.nvim o wofi
+      -- Ignore floating windows to prevent conflicts with lazy.nvim or wofi
       ignore_blank_lines = true, 
     })
 
-    -- TUS ATAJOS (Aquí es donde tú tomas el control)
-    -- Iron tiene sus propios mapeos internos, pero es mejor definirlos via vim.keymap
-    -- para consistencia con tu Leader Key.
+    -- YOUR KEYBINDS (This is where you take control)
+    -- Iron has its own internal mappings, but it's better to define them via vim.keymap
+    -- for consistency with your Leader Key.
     
-    -- Mapeo para visualizar/ocultar el REPL
+    -- Map to toggle the REPL
     vim.keymap.set('n', '<leader>rr', '<cmd>IronRepl<cr>', { desc = "REPL Toggle" })
     
-    -- Mapeo para reiniciar el REPL (útil si Python se cuelga)
+    -- Map to restart the REPL (useful if Python hangs)
     vim.keymap.set('n', '<leader>rt', '<cmd>IronRestart<cr>', { desc = "REPL Restart" })
     
-    -- Mapeo para enviar el archivo completo
+    -- Map to send the whole file
     vim.keymap.set('n', '<leader>rf', function() iron.send_file() end, { desc = "REPL Send File" })
 
-    -- NOTA: Para enviar líneas o selección visual, Iron requiere un operador.
-    -- Configura esto abajo siguiendo la documentación.
-    -- Mapeo para enviar movimientos. 
--- Al pulsar <leader>s, Vim esperará que le digas "qué" enviar (ej: <leader>sip envia el parrafo).
+    -- NOTE: To send lines or visual selection, Iron requires an operator.
+    -- Configure this below following the documentation.
+    -- Map to send motions. 
+    -- Pressing <leader>s, Vim will wait for you to specify "what" to send (e.g., <leader>sip sends the paragraph).
 	vim.keymap.set("n", "<leader>s", function()
   		iron.run_motion("send_motion")
 	end, { desc = "REPL Send Motion" })
--- Mapeo para enviar lo que tengas seleccionado visualmente
+    -- Map to send current visual selection
 	vim.keymap.set("v", "<leader>s", function()
   		iron.visual_send()
 	end, { desc = "REPL Visual Send" })

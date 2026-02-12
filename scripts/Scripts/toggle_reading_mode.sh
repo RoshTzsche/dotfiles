@@ -3,7 +3,7 @@ SHADER_PATH="$HOME/.config/hypr/shaders/grayscale.glsl"
 CURRENT_SHADER=$(hyprctl getoption decoration:screen_shader -j | jq -r '.str')
 
 if [[ "$CURRENT_SHADER" == *grayscale.glsl* ]]; then
-    # --- DESACTIVAR MODO LECTURA ---
+    # --- DISABLE READING MODE ---
     hyprctl keyword decoration:screen_shader "[[EMPTY]]"
     hyprctl keyword animations:enabled 1
     hyprctl keyword decoration:drop_shadow 1
@@ -12,7 +12,7 @@ if [[ "$CURRENT_SHADER" == *grayscale.glsl* ]]; then
     
 
 else
-    # --- ACTIVAR MODO LECTURA ---
+    # --- ENABLE READING MODE ---
     hyprctl keyword decoration:screen_shader "$SHADER_PATH"
     hyprctl keyword decoration:drop_shadow 0
     hyprctl keyword decoration:blur:enabled 0

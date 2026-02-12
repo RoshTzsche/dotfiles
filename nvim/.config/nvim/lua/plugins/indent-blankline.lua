@@ -3,10 +3,10 @@ return {
   main = "ibl",
   opts = {
     indent = {
-      char = "│", -- El carácter de la línea vertical
+      char = "│",
       tab_char = "│",
     },
-    scope = { enabled = true }, -- Resalta el bloque de código actual (función/if)
+    scope = { enabled = true },
     exclude = {
       filetypes = {
         "help",

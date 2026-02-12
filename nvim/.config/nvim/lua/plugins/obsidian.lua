@@ -7,25 +7,26 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
     "hrsh7th/nvim-cmp",
-    "nvim-telescope/telescope.nvim", -- <--- PIEZA FALTANTE CRÍTICA
+    "nvim-telescope/telescope.nvim",
   },
 
-  -- Atajos para cargar el plugin sin abrir un archivo primero
+  -- Shortcuts to load the plugin without opening a file first
   keys = {
-    { "<leader>on", "<cmd>ObsidianNew<cr>", desc = "Nueva Nota Obsidian" },
-    { "<leader>ot", "<cmd>ObsidianTemplate<cr>", desc = "Insertar Plantilla" },
-    { "<leader>os", "<cmd>ObsidianSearch<cr>", desc = "Buscar en Vault" },
+    { "<leader>on", "<cmd>ObsidianNew<cr>", desc = "New Obsidian Note" },
+    { "<leader>ot", "<cmd>ObsidianTemplate<cr>", desc = "Insert Template" },
+    { "<leader>os", "<cmd>ObsidianSearch<cr>", desc = "Search Vault" },
   },
 
   opts = {
 	  picker = {
     name = "telescope.nvim",
-    -- Opcional: Personaliza el aspecto si quieres que sea diferente al default
+    -- Optional: Customize the appearance if you want it different from the default
     -- note_mappings = { ... } 
   },
     workspaces = {
       {
         name = "personal",
+	-- heey you are going to use obsidian in nvim like me, its so cool, here you need to point to your own file (obsidian)path 
         path = "~/notes",
       },
     },
@@ -36,18 +37,18 @@ return {
       template = nil, 
     },
 
-    -- CONFIGURACIÓN DE PLANTILLAS (Simple y Directa)
+    -- TEMPLATES CONFIGURATION (Simple and Direct)
     templates = {
-      subdir = "templates", -- Ruta física: ~/notes/templates
+      subdir = "templates", -- Physical path: ~/notes/templates
       date_format = "%Y-%m-%d",
       time_format = "%H:%M",
       substitutions = {
-        -- Solo mantenemos lo esencial para tu bitácora
-        fresco = "Estado: 🟢 Fresco.",
+        -- Keeping only the essentials for your log
+        fresco = "Status: 🟢 Fresh.",
       },
     },
 
-    -- Corrección Estructural: Todo esto ahora vive DENTRO de opts
+    -- Structural Fix: All this now lives INSIDE opts
     completion = {
       nvim_cmp = true,
       min_chars = 2,
@@ -57,7 +58,7 @@ return {
 
     note_id_func = function(title)
       if title ~= nil then
-        -- Kebab-case para nombres de archivo limpios en Linux
+        -- Kebab-case for clean filenames in Linux
         return title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
       else
         local suffix = ""

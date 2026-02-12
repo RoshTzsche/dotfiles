@@ -1,11 +1,11 @@
 return {
   "hrsh7th/nvim-cmp",
-  event = "InsertEnter", -- Optimización: Solo carga cuando empiezas a escribir
+  event = "InsertEnter", -- Optimization: Load only when you start typing
   dependencies = {
-    "hrsh7th/cmp-buffer", -- Fuente: palabras en el archivo actual
-    "hrsh7th/cmp-path",   -- Fuente: rutas del sistema de archivos
-    "L3MON4D3/LuaSnip",   -- Motor de Snippets (Obligatorio)
-    "saadparwaiz1/cmp_luasnip", -- Puente entre cmp y LuaSnip
+    "hrsh7th/cmp-buffer", -- Source: words in the current file
+    "hrsh7th/cmp-path",   -- Source: filesystem paths
+    "L3MON4D3/LuaSnip",   -- Snippet Engine (Required)
+    "saadparwaiz1/cmp_luasnip", -- Bridge between cmp and LuaSnip
   },
   config = function()
     local cmp = require("cmp")
@@ -21,18 +21,18 @@ return {
       mapping = cmp.mapping.preset.insert({
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete(), -- Forzar menú
-        ["<C-e>"] = cmp.mapping.abort(), -- Cerrar menú
-        ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Enter confirma
+        ["<C-Space>"] = cmp.mapping.complete(), -- Force menu
+        ["<C-e>"] = cmp.mapping.abort(), -- Close menu
+        ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Enter to confirm
       }),
 
-      -- 3. Fuentes de Autocompletado (El orden importa)
+      -- 3. Autocompletion Sources (Order matters)
       sources = cmp.config.sources({
-        { name = "obsidian" }, -- Prioridad 1: Tus notas
-        { name = "obsidian_new" }, -- Prioridad 2: Crear notas nuevas
-        { name = "luasnip" },  -- Prioridad 3: Snippets
-        { name = "buffer" },   -- Prioridad 4: Texto en el archivo
-        { name = "path" },     -- Prioridad 5: Rutas de archivos
+        { name = "obsidian" }, -- Priority 1: Your notes
+        { name = "obsidian_new" }, -- Priority 2: Create new notes
+        { name = "luasnip" },  -- Priority 3: Snippets
+        { name = "buffer" },   -- Priority 4: Text in file
+        { name = "path" },     -- Priority 5: File paths
       }),
     })
   end,
