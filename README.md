@@ -1,30 +1,29 @@
-# 🏛️ Legion Dotfiles | CachyOS + Hyprland
+I'm currently working on this... 
+
+# 🏛️ Dotfiles | CachyOS + Hyprland
 
 ![Hero Shot](assets/hero.png)
 
-> "Civilize the mind, but make savage the body" — *Configured for Lenovo Legion 5 Pro*
+> "Civilize the mind, but make savage the body"
 
-## 📜 Philosophy
-A configuration focused on pure performance and adaptive aesthetics. Leveraging the power of the **Ryzen 6800H** and **RTX 3070**, this hybrid environment blends the fluidity of Wayland with the utility of custom scripts.
-
+## 📜 My Philosophy
+A configuration focused on pure performance and adaptive aesthetics, with custom scripts. 
+CPU: **Ryzen 6800H** 
+GPU: **RTX 3070**
 * **Base System:** CachyOS (Optimized Arch Linux)
 * **WM:** Hyprland (Dwindle Layout)
 * **Colors:** Pywal (Dynamic generation based on wallpaper)
 * **Typography:** JetBrains Mono Nerd Font
 
-## 🖼️ Gallery
+## 🖼️ Gallery - NOT FINISHED
 
 ### Productivity Mode (Dynamic Tiling)
 ![Busy Shot](assets/busy.png)
 
 ### 🌑 Reading Mode (E-Ink Shader)
-A key feature is the custom GLSL shader that simulates electronic ink to reduce eye strain. It uses deterministic logic (Bayer matrices) to simulate paper grain and ink bleed.
+A key feature is the custom GLSL shader that simulates electronic ink to reduce eye strain. It uses deterministic logic (Bayer matrices) to simulate paper grain and ink bleed. Inspired in the dotfiles from [snes19xx](https://github.com/snes19xx/surface-dots)
 ![Reading Mode](assets/reading.png)
 *(Custom script that toggles shaders, shadows, and blur on-the-fly)*
-
-### 🍅 Time Management (Waybar Pomodoro)
-Custom Waybar module written in Python with notification integration and visual controls.
-![Pomodoro](assets/pomodoro.png)
 
 ## 🛠️ Tech Stack
 
@@ -78,5 +77,9 @@ stow scripts
 | `SUPER + L` | Hyprlock |
 
 ---
+# UNIFINISHED STUFF
+### 🍅 Time Management (Waybar Pomodoro) _UNFINISHED
+Custom Waybar module written in Python with notification integration and visual controls.
+![Pomodoro](assets/pomodoro.png)
 
 *by RoshTzsche.*
