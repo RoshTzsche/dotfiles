@@ -1,24 +1,20 @@
 {
     "layer": "top", 
     "position": "top",
-    "height": 15, // Altura ajustada para 2560x1600 con escalado 1.6
-    "spacing": 4, // Espacio entre módulos
+    "height": 15, 
+    "spacing": 4,
     
     "modules-left": [
 	    "custom/launcher",
 	    "hyprland/workspaces",
 	    "custom/reading-mode"
-          //"custom/pomodoro"
+          //"custom/pomodoro" its functional but i don't like it yet, i'm currently using another TUI app for tracking, you could find it in my github
                 ],
-    
-    // Módulos al Centro (Tiempo)
     "modules-center": ["clock",
     ],
-    
-    // Módulos a la Derecha (Hardware)
-    "modules-right": ["pulseaudio", "custom/nvidia", "cpu", "memory","temperature", "battery", "custom/syncthing", "tray"],
+    "modules-right": ["pulseaudio", "cpu", "temperature","memory","custom/nvidia", "battery", "custom/syncthing", "tray"],
 
-    // --- CONFIGURACIÓN DETALLADA DE MÓDULOS ---
+    // --- Modules ---
 
     "hyprland/workspaces": {
         "disable-scroll": true,
@@ -36,8 +32,8 @@
             "8": "八",  // Hachi
             "9": "九",  // Kyu
             "10": "十", // Ju
-            "urgent": "",    // Alerta (Exclamación en círculo)
-            "default": ""    // Vacío (Círculo hueco)
+            "urgent": "",  
+            "default": "" 
 	}
 
     },
@@ -49,9 +45,9 @@
     },
     
     "cpu": {
-        "format": "  {usage}%" ,
+        "format": " {usage}%" ,
         "tooltip": false,
-        "interval": 10 // Actualizar cada 2s para no saturar la CPU
+        "interval": 10 
     },
     
     "memory": {
@@ -108,9 +104,9 @@
     "custom/nvidia": {
         "exec": "~/.config/waybar/scripts/nvidia_monitor.sh",
         "return-type": "json",
-        "format": "{}", // El {} se reemplaza por el "text" del JSON
-        "interval": 3, // Revisar cada 3 segundos
-        "on-click": "prime-run kitty --hold -e nvidia-smi" // Click para ver detalles en terminal
+        "format": "{}",
+        "interval": 3,
+        "on-click": "prime-run kitty --hold -e nvidia-smi"
     },
 
     "custom/syncthing": {
