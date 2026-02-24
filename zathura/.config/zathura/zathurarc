@@ -1,0 +1,27 @@
+
+set guioptions ""
+set selection-clipboard clipboard
+set recolor "true"
+set recolor-keephue "true"
+set adjust-open "best-fit"  
+set pages-per-row 1        
+set scroll-step 40        
+set render-loading true
+set scroll-full-overlap 0.01
+
+
+set window-title-basename true
+set statusbar-h-padding 0
+set statusbar-v-padding 0
+set page-padding 1            # Minimal padding between pages
+set scrollbars false          # No visual scrollbar
+
+
+# Mapas de teclas personalizados (Opcional, estilo Nvim)
+map r rotate
+map R reload
+map i recolor                      # 'i' para invertir colores rapido (toggle)
+map a adjust_window best-fit
+map s adjust_window width
+map f toggle_fullscreen
+map [normal] <BackSpace> navigate previous
