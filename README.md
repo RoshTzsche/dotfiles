@@ -33,7 +33,7 @@ A showcase of how the entire system adapts to the wallpaper color palette instan
   <tr>
     <td width="33.3%"><img src="assets/mainpink.png" alt="Pink Theme"></td>
     <td width="33.3%"><img src="assets/mainpurple.png" alt="Purple Theme"></td>
-    <td width="33.3%"><img src="assets/screenshot_20260220_115330.png" alt="Current Setup"></td>
+    <td width="33.3%"><img src="assets/mainclassic.png" alt="Current Setup"></td>
   </tr>
 </table>
 

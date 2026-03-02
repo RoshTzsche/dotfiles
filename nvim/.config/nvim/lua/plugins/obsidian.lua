@@ -83,5 +83,5 @@ return {
     ui = {
       enable = true, 
     },
-  }, 
+  },
 }
