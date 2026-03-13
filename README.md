@@ -106,7 +106,7 @@ This repository uses **GNU Stow** to manage symlinks.
 
 ```bash
 # 1. Clone the repo
-git clone [https://github.com/RoshTzsche/dotfiles.git](https://github.com/RoshTzsche/dotfiles.git) ~/dotfiles
+git clone https://github.com/RoshTzsche/dotfiles.git ~/dotfiles
 
 # 2. Install dependencies (Partial list)
 sudo pacman -S hyprland waybar kitty fish neovim stow pywal
