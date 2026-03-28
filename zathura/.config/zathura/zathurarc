@@ -16,7 +16,8 @@ set statusbar-v-padding 0
 set page-padding 1            # Minimal padding between pages
 set scrollbars false          # No visual scrollbar
 
-
+set synctex true
+set synctex-editor-command "nvr --remote-silent +%{line} %{input}"
 # Mapas de teclas personalizados (Opcional, estilo Nvim)
 map r rotate
 map R reload
