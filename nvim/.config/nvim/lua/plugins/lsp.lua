@@ -3,72 +3,85 @@ return {
   dependencies = {
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
-    "hrsh7th/cmp-nvim-lsp", -- The vital autocompletion bridge
+    "hrsh7th/cmp-nvim-lsp", -- El puente vital para autocompletado
   },
   config = function()
-    -- 1. Start Mason (The Installer)
+    -- 1. Iniciar Mason (El Gestor de Binarios)
     require("mason").setup()
     
-    -- Define capabilities once for all servers
-    local capabilities = require('cmp_nvim_lsp').default_capabilities()
+    -- 2. Declarar las capacidades (Capabilities) para CMP
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-    -- 2. Configure Mason-LSPConfig with "Handlers" (Modern Architecture)
+    -- 3. Iniciar Mason-LSPConfig (La lista de instalación)
     require("mason-lspconfig").setup({
-      ensure_installed = { "pyright", "lua_ls" }, -- What we absolutely need
-      
-      -- HERE IS THE MAGIC: Automatic handlers
-      handlers = {
-        -- Default handler: Applies to any server without special config
-        function(server_name)
-          require("lspconfig")[server_name].setup({
-            capabilities = capabilities,
-          })
-        end,
-
-        -- Specific handler for PYTHON (Pyright)
-        ["pyright"] = function()
-          require("lspconfig").pyright.setup({
-            capabilities = capabilities,
-            settings = {
-              python = {
-                analysis = {
-                  autoSearchPaths = true,
-                  useLibraryCodeForTypes = true,
-                  diagnosticMode = "workspace",
-                },
-              },
-            },
-          })
-        end,
-
-        -- Specific handler for LUA
-        ["lua_ls"] = function()
-          require("lspconfig").lua_ls.setup({
-            capabilities = capabilities,
-            settings = {
-              Lua = {
-                diagnostics = { globals = { "vim" } },
-              },
-            },
-          })
-        end,
-      }
+      ensure_installed = { "pyright", "lua_ls", "tinymist" },
     })
 
-    -- 3. KEYBINDS (Keymaps)
-    -- This only activates when an LSP server attaches to your buffer
+    -- 4. CONFIGURACIÓN EXACTA DE SERVIDORES (Handlers)
+    require("mason-lspconfig").setup_handlers({
+      
+      -- A) Handler por defecto (Para cualquier LSP sin config especial)
+      function(server_name)
+        require("lspconfig")[server_name].setup({
+          capabilities = capabilities,
+        })
+      end,
+
+      -- B) Handler para PYTHON
+      ["pyright"] = function()
+        require("lspconfig").pyright.setup({
+          capabilities = capabilities,
+          settings = {
+            python = {
+              analysis = {
+                autoSearchPaths = true,
+                useLibraryCodeForTypes = true,
+                diagnosticMode = "workspace",
+              },
+            },
+          },
+        })
+      end,
+
+      -- C) Handler para TYPST (La Visión de Zathura)
+      ["tinymist"] = function()
+        require("lspconfig").tinymist.setup({
+          capabilities = capabilities,
+          settings = {
+            exportPdf = "onSave",
+            outputPath = "$root/$dir/$name",
+            formatterMode = "typstyle",
+            semanticTokens = "disable"
+          }
+        })
+      end,
+
+      -- D) Handler para LUA
+      ["lua_ls"] = function()
+        require("lspconfig").lua_ls.setup({
+          capabilities = capabilities,
+          settings = {
+            Lua = {
+              diagnostics = { globals = { "vim" } },
+            },
+          },
+        })
+      end,
+    })
+
+    -- 5. ATAJOS DE TECLADO (LspAttach)
+    -- Solo se activan cuando un LSP se conecta exitosamente a tu buffer
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("UserLspConfig", {}),
       callback = function(ev)
         local opts = { buffer = ev.buf }
-        
-        -- Go to definition (gd)
+        -- Ir a definición
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-        -- View floating documentation (K)
+        -- Ver documentación flotante
         vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-        -- Rename variable (Space + r)
+        -- Renombrar variable
         vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
-        -- Code actions (Space + ca)
+        -- Acciones de código
         vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
       end,
     })
