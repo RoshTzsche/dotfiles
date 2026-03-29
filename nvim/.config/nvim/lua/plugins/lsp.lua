@@ -31,7 +31,7 @@ vim.lsp.config('pyright', {
 vim.lsp.config('tinymist', {
   capabilities = capabilities,
   settings = {
-    exportPdf = "onSave",
+    exportPdf = "onType",
     outputPath = "$root/$dir/$name",
     formatterMode = "typstyle",
     semanticTokens = "disable"
