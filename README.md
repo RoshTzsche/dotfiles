@@ -80,6 +80,8 @@ A key feature is the custom GLSL shader that simulates electronic ink to reduce 
   </tr>
 </table>
 
+**Typst + Nvim workflow** (Latex modern alternative)
+![Nvim and typst](./assets/typst_nvim.png)
 ---
 
 ## 🛠️ Tech Stack
@@ -92,15 +94,15 @@ A key feature is the custom GLSL shader that simulates electronic ink to reduce 
 | **Launcher** | Wofi/Rofi | Custom launcher scripts |
 | **Terminal** | Kitty | GPU accelerated, controlled via socket |
 | **Compositor** | Hyprland | `easeOutQuint` animations, `dwindle` layout |
-
-## ✨ Unique Features
+| **Math editor** | Typst | Open nvim inside a .typ file, and press SPACE + t |
+## Features
 
 * **Hybrid GPU Handling:** Custom scripts to monitor the RTX 3070 (temperature, usage, VRAM) in Waybar, only active when the dGPU is awake.
 * **Wallpaper Engine:** `set_wallpaper.sh` script that manages `hyprpaper`, generates `pywal` color schemes, and reloads `waybar`, `kitty`, and `dunst` instantly.
 * **Obsidian Neovim:** Zettelkasten workflow integrated directly into the editor.
 * **True Reading Mode:** Mathematical implementation of noise and paper grain to simulate real reading conditions.
 
-## 📦 Installation
+## Installation
 
 This repository uses **GNU Stow** to manage symlinks.
 
@@ -122,7 +124,7 @@ stow scripts
 
 ```
 
-## ⌨️ Keybindings
+## Keybindings
 
 | Key | Action |
 | --- | --- |
