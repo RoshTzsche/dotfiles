@@ -20,3 +20,4 @@ function IA_Mode
     echo "Running: mamba activate <env> (vision)"
     mamba activate vision
 end
+set -gx PATH $HOME/miniforge3/bin $PATH
