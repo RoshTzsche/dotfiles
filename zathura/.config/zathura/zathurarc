@@ -6,7 +6,8 @@ set recolor-keephue "true"
 set adjust-open "best-fit"  
 set pages-per-row 1        
 set scroll-step 40        
-set render-loading true
+set render-loading false
+set page-cache-size 30
 set scroll-full-overlap 0.01
 
 
